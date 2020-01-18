@@ -57,5 +57,6 @@ public class EnemyBehaviour : MonoBehaviour, IConvertGameObjectToEntity
 
         Health health = new Health { Value = enemyHealth };
         manager.AddComponentData(entity, health);
+        
     }
 }

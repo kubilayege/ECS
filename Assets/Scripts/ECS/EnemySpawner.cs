@@ -1,6 +1,7 @@
 ﻿using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
+using Unity.Rendering;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public bool useECS = false;
     public float enemySpawnRadius = 10f;
     public GameObject enemyPrefab;
+    public RenderMesh displayMesh;
 
     [Header("Enemy Spawn Timing")]
     [Range(1, 100)] public int spawnsPerInterval = 1;
@@ -25,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
         if (useECS)
         {
             manager = World.Active.EntityManager;
-            enemyEntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(enemyPrefab, World.Active);
+            enemyEntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(enemyPrefab.gameObject, World.Active);
         }
     }
 
@@ -57,6 +59,8 @@ public class EnemySpawner : MonoBehaviour
             {
                 Entity enemy = manager.Instantiate(enemyEntityPrefab);
                 manager.SetComponentData(enemy, new Translation { Value = pos });
+                manager.SetSharedComponentData(enemy, displayMesh);
+               
             }
         }
     }

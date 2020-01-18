@@ -77,18 +77,18 @@ public class PlayerMovementAndLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerTransform.Rotate(Vector3.up * mouseX);
 
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        //Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        //RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, whatIsGround))
-        {
-            Vector3 playerToMouse = hit.point - transform.position;
-            playerToMouse.y = 0f;
-            playerToMouse.Normalize();
+        //if (Physics.Raycast(ray, out hit, whatIsGround))
+        //{
+        //    Vector3 playerToMouse = hit.point - transform.position;
+        //    playerToMouse.y = 0f;
+        //    playerToMouse.Normalize();
 
-            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
-            playerRigidbody.MoveRotation(newRotation);
-        }
+        //    Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
+        //    playerRigidbody.MoveRotation(newRotation);
+        //}
     }
 
     void AnimateThePlayer(Vector3 desiredDirection)
